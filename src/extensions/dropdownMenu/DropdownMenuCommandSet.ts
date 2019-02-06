@@ -33,21 +33,18 @@ export default class DropdownMenuCommandSet extends BaseListViewCommandSet<IDrop
 
   @override
   public onListViewUpdated(event: IListViewCommandSetListViewUpdatedParameters): void {
-    const compareOneCommand: Command = this.tryGetCommand('COMMAND_1');
-    if (compareOneCommand) {
+    const dropdownCommand: Command = this.tryGetCommand('DROPDOWNCOMMAND');
+    if (dropdownCommand) {
       // This command should be hidden unless exactly one row is selected.
-      compareOneCommand.visible = event.selectedRows.length === 1;
+      dropdownCommand.visible = event.selectedRows.length > 0;
     }
   }
 
   @override
   public onExecute(event: IListViewCommandSetExecuteEventParameters): void {
     switch (event.itemId) {
-      case 'COMMAND_1':
+      case 'DROPDOWNCOMMAND':
         Dialog.alert(`${this.properties.sampleTextOne}`);
-        break;
-      case 'COMMAND_2':
-        Dialog.alert(`${this.properties.sampleTextTwo}`);
         break;
       default:
         throw new Error('Unknown command');
