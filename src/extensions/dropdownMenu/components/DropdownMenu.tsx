@@ -2,12 +2,13 @@ import * as React from 'react';
 import Styles from './DropdownMenu.module.scss';
 import { Callout, DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { DropdownItem } from './DropdownItem';
 
 export interface IDropdownMenuProps {
     element: HTMLElement;
     dismiss: () => void;
     elementName: string;
-    items: any;
+    items: any[];
 }
 
 export interface IDropdownMenuState {
@@ -36,12 +37,11 @@ export class DropdownMenu extends React.Component<IDropdownMenuProps, IDropdownM
                         gapSpace={0}
                     >
                         <div>
-                            <div>
-                                <DefaultButton onClick={this._onShowMenuClicked} text="Click to dismiss" />
-                            </div>
-                            <div> 
-                                <DefaultButton onClick={this._onShowMenuClicked} text="Click to dismiss" />
-                            </div>
+                            {
+                                this.props.items.map(item=>{
+                                    return <DropdownItem dropdownInfo={item}></DropdownItem>
+                                })
+                            }
                         </div>
                     </Callout>
                 ) : null}
@@ -49,6 +49,15 @@ export class DropdownMenu extends React.Component<IDropdownMenuProps, IDropdownM
             
         );
     }
+
+    /**
+     * <div>
+                                <DefaultButton onClick={this._onShowMenuClicked} text="Click to dismiss" />
+                            </div>
+                            <div> 
+                                <DefaultButton onClick={this._onShowMenuClicked} text="Click to dismiss" />
+                            </div>
+     */
 
     private _onDismiss(): void {
         this.setState({ visible: false });
