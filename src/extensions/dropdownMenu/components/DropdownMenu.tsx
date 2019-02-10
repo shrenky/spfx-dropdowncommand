@@ -12,7 +12,7 @@ export interface IDropdownMenuProps {
 }
 
 export interface IDropdownMenuState {
-    visible: boolean
+    visible: boolean;
 }
 
 export class DropdownMenu extends React.Component<IDropdownMenuProps, IDropdownMenuState> {
@@ -20,7 +20,7 @@ export class DropdownMenu extends React.Component<IDropdownMenuProps, IDropdownM
         super(props, state);
         this._onDismiss = this._onDismiss.bind(this);
         this._onShowMenuClicked = this._onShowMenuClicked.bind(this);
-        this.state = { visible: true }
+        this.state = { visible: true };
     }
 
     public render(): JSX.Element {
@@ -39,7 +39,7 @@ export class DropdownMenu extends React.Component<IDropdownMenuProps, IDropdownM
                         <div>
                             {
                                 this.props.items.map(item=>{
-                                    return <DropdownItem dropdownInfo={item}></DropdownItem>
+                                    return <DropdownItem dropdownInfo={item}></DropdownItem> ;
                                 })
                             }
                         </div>
